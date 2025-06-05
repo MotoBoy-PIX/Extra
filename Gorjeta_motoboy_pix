@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gorjeta do Motoboy</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #87CEEB, #1E90FF);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            color: white;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+
+        .container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            max-width: 80%;
+            position: relative;
+            z-index: 10;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .pix-box {
+            background-color: rgba(255, 255, 255, 0.3);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .pix-key {
+            font-family: monospace;
+            word-break: break-all;
+        }
+
+        .copy-btn {
+            background-color: #FFD700;
+            color: #333;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin-left: 10px;
+            white-space: nowrap;
+        }
+
+        .copy-btn:hover {
+            background-color: #FFC000;
+            transform: scale(1.05);
+        }
+
+        .copy-btn:active {
+            transform: scale(0.95);
+        }
+
+        .cloud {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            opacity: 0.8;
+        }
+
+        .hamburger-cloud {
+            width: 100px;
+            height: 60px;
+            top: 20%;
+            left: 10%;
+            border-radius: 60px;
+        }
+
+        .hamburger-cloud::before {
+            content: "";
+            position: absolute;
+            width: 40px;
+            height: 20px;
+            background-color: #f4a548;
+            border-radius: 10px;
+            top: 20px;
+            left: 30px;
+        }
+
+        .hamburger-cloud::after {
+            content: "";
+            position: absolute;
+            width: 60px;
+            height: 10px;
+            background-color: #d35400;
+            border-radius: 5px;
+            top: 40px;
+            left: 20px;
+        }
+
+        .icecream-cloud {
+            width: 80px;
+            height: 100px;
+            top: 60%;
+            right: 15%;
+            border-radius: 40px 40px 0 0;
+        }
+
+        .icecream-cloud::before {
+            content: "";
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background-color: #ffb6c1;
+            border-radius: 50%;
+            top: -30px;
+            left: 10px;
+        }
+
+        .fries-cloud {
+            width: 80px;
+            height: 120px;
+            bottom: 10%;
+            left: 20%;
+        }
+
+        .fries-cloud::before {
+            content: "";
+            position: absolute;
+            width: 10px;
+            height: 80px;
+            background-color: #f4e542;
+            top: 20px;
+            left: 15px;
+            transform: rotate(-10deg);
+        }
+
+        .fries-cloud::after {
+            content: "";
+            position: absolute;
+            width: 10px;
+            height: 100px;
+            background-color: #f4e542;
+            top: 10px;
+            left: 35px;
+            transform: rotate(5deg);
+        }
+
+        .emoji {
+            font-size: 2rem;
+            display: inline-block;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .success-message {
+            display: none;
+            color: #4CAF50;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="cloud hamburger-cloud"></div>
+    <div class="cloud icecream-cloud"></div>
+    <div class="cloud fries-cloud"></div>
+
+    <div class="container">
+        <h1>Pergunta importante: gorjeta entra no combo 'cliente feliz + motoboy feliz'? Se sim, bora fechar! <span class="emoji">😎</span></h1>
+        
+        <div class="pix-box">
+            <span class="pix-key">0c397cfc-9a35-4be7-a550-3fcb5c9d1afb</span>
+            <button class="copy-btn" onclick="copyPixKey()">Copiar Chave PIX</button>
+        </div>
+        
+        <div class="success-message" id="successMessage">Chave PIX copiada com sucesso!</div>
+    </div>
+
+    <script>
+        function copyPixKey() {
+            const pixKey = "0c397cfc-9a35-4be7-a550-3fcb5c9d1afb";
+            navigator.clipboard.writeText(pixKey).then(() => {
+                const successMessage = document.getElementById('successMessage');
+                successMessage.style.display = 'block';
+                setTimeout(() => {
+                    successMessage.style.display = 'none';
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
