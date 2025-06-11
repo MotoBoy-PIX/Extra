@@ -3,150 +3,327 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gorjeta do Motoboy</title>
+    <title>Motoboy Delivery</title>
     <style>
         body {
-            margin: 0;
-            padding: 0;
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-                        url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            color: white;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            background-color: #ff6b6b;
+            background-image: 
+                linear-gradient(45deg, rgba(255,255,255,0.1) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.1) 75%, transparent 75%, transparent),
+                repeating-linear-gradient(-45deg, #ff8a00, #ff8a00 10px, #e52e71 10px, #e52e71 20px);
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
         }
 
         .container {
-            text-align: center;
             background-color: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(5px);
+            border-radius: 15px;
             padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-            max-width: 80%;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
             position: relative;
-            z-index: 10;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1;
         }
 
         h1 {
-            font-size: 1.8rem;
+            font-size: 2.2rem;
             margin-bottom: 20px;
-            color: #FFD700;
+            text-transform: uppercase;
+            color: #ffcc00;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
 
-        .pix-box {
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .pix-container {
             background-color: rgba(255, 255, 255, 0.2);
-            padding: 15px;
             border-radius: 10px;
-            margin: 20px 0;
+            padding: 15px;
+            margin: 25px 0;
             display: flex;
-            flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
-            gap: 10px;
         }
 
         .pix-key {
-            font-family: monospace;
+            font-family: 'Courier New', monospace;
             word-break: break-all;
-            color: #FFF;
+            text-align: left;
             flex-grow: 1;
+            color: #fff;
         }
 
         .copy-btn {
-            background-color: #FFD700;
-            color: #333;
+            background-color: #ffcc00;
+            color: #8a6d00;
             border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
             cursor: pointer;
-            font-weight: bold;
+            margin-left: 15px;
             transition: all 0.3s;
-            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
         }
 
         .copy-btn:hover {
-            background-color: #FFC000;
-            transform: scale(1.05);
+            transform: scale(1.1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
         }
 
         .copy-btn:active {
             transform: scale(0.95);
         }
 
-        .emoji {
-            font-size: 2rem;
-            display: inline-block;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-15px);
-            }
-        }
-
-        .success-message {
-            display: none;
-            color: #4CAF50;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-
-        /* Motoboy animation */
-        .motoboy {
+        .coin {
             position: absolute;
-            bottom: 20px;
-            right: -100px;
-            font-size: 3rem;
-            animation: drive 15s linear infinite;
+            width: 20px;
+            height: 20px;
+            background-color: gold;
+            border-radius: 50%;
+            opacity: 0;
+            pointer-events: none;
+            animation: coin-pop 1s ease-out;
         }
 
-        @keyframes drive {
+        @keyframes coin-pop {
             0% {
-                transform: translateX(-100vw);
+                transform: translateY(0) scale(0.5);
+                opacity: 1;
             }
             100% {
-                transform: translateX(100vw);
+                transform: translateY(-100px) scale(1);
+                opacity: 0;
             }
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+
+        .stat-box {
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            border-radius: 8px;
+            min-width: 120px;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ffcc00;
+            margin-top: 5px;
+        }
+
+        .ft-bg {
+            position: fixed;
+            font-size: 20vw;
+            font-weight: bold;
+            color: rgba(255, 255, 255, 0.05);
+            z-index: 0;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .ft-1 {
+            top: 10%;
+            left: 5%;
+            transform: rotate(-15deg);
+        }
+
+        .ft-2 {
+            bottom: 15%;
+            right: 5%;
+            transform: rotate(15deg);
+        }
+
+        .signature {
+            margin-top: 30px;
+            font-style: italic;
+            font-size: 1rem;
+            color: #ffcc00;
+        }
+
+        .emoji {
+            font-size: 1.5rem;
+            vertical-align: middle;
+            margin: 0 5px;
+        }
+
+        #resetBtn {
+            background: #ff0000;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-top: 20px;
+            cursor: pointer;
+            display: none;
+        }
+
+        #resetBtn:hover {
+            background: #cc0000;
+        }
+
+        .lgpd-warning {
+            background-color: rgba(0, 0, 0, 0.5);
+            border-left: 4px solid #ffcc00;
+            padding: 10px 15px;
+            margin: 20px 0;
+            font-size: 0.9rem;
+            text-align: left;
+            border-radius: 0 5px 5px 0;
         }
     </style>
 </head>
 <body>
-    <div class="motoboy">🏍️</div>
+    <div class="ft-bg ft-1">FT</div>
+    <div class="ft-bg ft-2">FT</div>
 
     <div class="container">
-        <h1>Pergunta importante: gorjeta entra no combo 'cliente feliz + motoboy feliz'? Se sim, bora fechar! <span class="emoji">😎</span></h1>
+        <h1>ENTREGUEI SUA ENCOMENDA... <br>E AGORA ENTREGO UM PEDIDO!</h1>
         
-        <div class="pix-box">
-            <span class="pix-key">0c397cfc-9a35-4be7-a550-3fcb5c9d1afb</span>
-            <button class="copy-btn" onclick="copyPixKey()">Copiar Chave PIX</button>
+        <div class="lgpd-warning">
+            <p>🔒 Este site não coleta dados pessoais. Os contadores usam apenas localStorage anônimo, sem identificação individual.</p>
         </div>
         
-        <div class="success-message" id="successMessage">Chave PIX copiada com sucesso!</div>
+        <p>Fala aí! Sou motoboy das ruas e dos corres. Enquanto levo suas encomendas, também tô tentando correr atrás dos meus sonhos!</p>
+        
+        <p>Se quiser me dar uma força com um café, uma ajuda na gasolina, ou só uma boa energia... já tá valendo demais.</p>
+        
+        <p>Pode ser um lanche, um real ou só aquele "vai na fé"!</p>
+        
+        <div class="pix-container">
+            <div class="pix-key" id="pixKey">0c397cfc-9a35-4be7-a550-3fcb5c9d1afb</div>
+            <button class="copy-btn" id="copyBtn">R$</button>
+        </div>
+        
+        <p class="signature">Valeu pela moral! <span class="emoji">🙏✌️🏍️💨</span></p>
+        
+        <div class="stats">
+            <div class="stat-box">
+                <div>Acessos</div>
+                <div class="stat-number" id="accessCount">0</div>
+            </div>
+            <div class="stat-box">
+                <div>PIX Copiados</div>
+                <div class="stat-number" id="copyCount">0</div>
+            </div>
+        </div>
+
+        <button id="resetBtn">Zerar Contadores</button>
     </div>
 
     <script>
-        function copyPixKey() {
-            const pixKey = "0c397cfc-9a35-4be7-a550-3fcb5c9d1afb";
-            navigator.clipboard.writeText(pixKey).then(() => {
-                const successMessage = document.getElementById('successMessage');
-                successMessage.style.display = 'block';
-                setTimeout(() => {
-                    successMessage.style.display = 'none';
-                }, 2000);
-            });
+        // Verifica se é um novo dia
+        const lastAccessDate = localStorage.getItem('lastAccessDate');
+        const today = new Date().toDateString();
+        
+        // Se for um novo dia, zera os contadores
+        if (!lastAccessDate || lastAccessDate !== today) {
+            localStorage.setItem('accessCount', 0);
+            localStorage.setItem('copyCount', 0);
+            localStorage.setItem('lastAccessDate', today);
         }
+
+        // Contador de acessos
+        let accessCount = parseInt(localStorage.getItem('accessCount')) || 0;
+        accessCount++;
+        localStorage.setItem('accessCount', accessCount);
+        document.getElementById('accessCount').textContent = accessCount;
+
+        // Contador de cópias
+        let copyCount = parseInt(localStorage.getItem('copyCount')) || 0;
+        document.getElementById('copyCount').textContent = copyCount;
+
+        // Função para copiar PIX
+        document.getElementById('copyBtn').addEventListener('click', function() {
+            const pixKey = document.getElementById('pixKey').textContent;
+            navigator.clipboard.writeText(pixKey).then(function() {
+                // Animação das moedas
+                createCoins();
+                
+                // Atualizar contador de cópias
+                copyCount++;
+                localStorage.setItem('copyCount', copyCount);
+                document.getElementById('copyCount').textContent = copyCount;
+                
+                // Feedback visual
+                const btn = document.getElementById('copyBtn');
+                btn.textContent = '✓';
+                setTimeout(() => {
+                    btn.textContent = 'R$';
+                }, 1000);
+            });
+        });
+
+        // Criar moedas animadas
+        function createCoins() {
+            const btn = document.getElementById('copyBtn');
+            const btnRect = btn.getBoundingClientRect();
+            
+            for (let i = 0; i < 5; i++) {
+                const coin = document.createElement('div');
+                coin.className = 'coin';
+                
+                // Posição inicial (centro do botão)
+                const startX = btnRect.left + btnRect.width/2 - 10;
+                const startY = btnRect.top + btnRect.height/2 - 10;
+                
+                // Posição final aleatória
+                const endX = startX + (Math.random() * 100 - 50);
+                const endY = startY - 100;
+                
+                coin.style.left = `${startX}px`;
+                coin.style.top = `${startY}px`;
+                
+                document.body.appendChild(coin);
+                
+                // Remover após animação
+                setTimeout(() => {
+                    coin.remove();
+                }, 1000);
+            }
+        }
+
+        // Botão de reset (aparece somente se pressionar Ctrl+Alt+R)
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.altKey && e.key === 'r') {
+                document.getElementById('resetBtn').style.display = 'inline-block';
+            }
+        });
+
+        document.getElementById('resetBtn').addEventListener('click', function() {
+            if(confirm('Tem certeza que deseja zerar TODOS os contadores?')) {
+                localStorage.setItem('accessCount', 0);
+                localStorage.setItem('copyCount', 0);
+                localStorage.setItem('lastAccessDate', today);
+                document.getElementById('accessCount').textContent = 0;
+                document.getElementById('copyCount').textContent = 0;
+                alert('Contadores zerados com sucesso!');
+                this.style.display = 'none';
+            }
+        });
     </script>
 </body>
 </html>
